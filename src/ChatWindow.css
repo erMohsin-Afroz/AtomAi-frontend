@@ -1,0 +1,883 @@
+.chatWindow {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    width: 0;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    color: var(--app-text, #f0fdf9);
+
+    background:
+        radial-gradient(
+            ellipse at 75% 0%,
+            rgba(16, 185, 129, 0.07),
+            transparent 42%
+        ),
+        var(--app-bg, #0b1515);
+
+    transition:
+        background-color 260ms ease,
+        color 260ms ease;
+}
+
+.chatWindow > * {
+    position: relative;
+    z-index: 1;
+}
+
+.chatWindow .navbar {
+    position: relative;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    width: 100%;
+    min-height: 72px;
+    flex-shrink: 0;
+
+    padding: 12px 28px;
+
+    background: var(--app-surface, rgba(17, 35, 34, 0.80));
+
+    border-bottom: 1px solid var(--app-border);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    transition:
+        background-color 260ms ease,
+        border-color 260ms ease;
+}
+
+.chatWindow .navbarBrand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    min-width: 0;
+}
+
+.chatWindow .brandName {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--app-text);
+
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+
+    white-space: nowrap;
+}
+
+.chatWindow .brandName .logoc {
+    display: block;
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.chatWindow .brandName b {
+    font-weight: 700;
+
+    background: linear-gradient(
+        120deg,
+        #10b981,
+        #14b8a6,
+        #38bdf8
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.chatWindow .brandName i {
+    margin-left: 2px;
+
+    color: var(--app-text-muted);
+
+    font-size: 11px;
+    transition:
+        color 180ms ease,
+        transform 180ms ease;
+}
+
+.chatWindow .brandName:hover i {
+    color: var(--accent-primary);
+    transform: translateY(2px);
+}
+
+.chatWindow .mobileMenuBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    padding: 0;
+
+    color: var(--app-text-secondary);
+    background: var(--app-surface-hover);
+
+    border: 1px solid var(--app-border);
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.chatWindow .mobileMenuBtn:hover {
+    color: var(--app-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.17),
+            rgba(20, 184, 166, 0.10)
+        );
+
+    border-color: var(--app-border-strong);
+}
+
+.chatWindow .mobileMenuBtn:active {
+    transform: scale(0.95);
+}
+
+.chatWindow .mobileMenuBtn i {
+    font-size: 17px;
+}
+
+.chatWindow .navControls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+.chatWindow .themeToggleBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    color: var(--app-text-secondary);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.09),
+            rgba(20, 184, 166, 0.06)
+        );
+
+    border: 1px solid var(--app-border);
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.chatWindow .themeToggleBtn:hover {
+    color: var(--accent-primary);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 185, 129, 0.18),
+            rgba(20, 184, 166, 0.11)
+        );
+
+    border-color: var(--app-border-strong);
+
+    box-shadow: var(--app-glow);
+
+    transform: translateY(-1px);
+}
+
+.chatWindow .themeToggleBtn:active {
+    transform: scale(0.94);
+}
+
+.chatWindow .themeToggleBtn i {
+    font-size: 17px;
+}
+
+.chatWindow .profileContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-height: 44px;
+    max-width: 240px;
+
+    padding: 5px 13px 5px 6px;
+
+    color: var(--app-text);
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(16, 185, 129, 0.10),
+            rgba(20, 184, 166, 0.06)
+        );
+
+    border: 1px solid var(--app-border);
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.chatWindow .profileContainer:hover {
+    background:
+        linear-gradient(
+            120deg,
+            rgba(16, 185, 129, 0.17),
+            rgba(20, 184, 166, 0.10)
+        );
+
+    border-color: var(--app-border-strong);
+
+    box-shadow: var(--app-glow);
+}
+
+.chatWindow .userIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #10b981,
+        #14b8a6,
+        #0f766e
+    );
+
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(16, 185, 129, 0.18);
+}
+
+.chatWindow .userIcon i {
+    font-size: 14px;
+}
+
+.chatWindow .userName {
+    display: block;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--app-text);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.chatWindow .dropDown {
+    position: absolute;
+    top: 63px;
+    right: 26px;
+    z-index: 50;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    width: 220px;
+    max-width: calc(100% - 24px);
+
+    padding: 9px;
+
+    color: var(--app-text);
+
+    background: var(--app-surface-solid, #122322);
+
+    border: 1px solid var(--app-border-strong);
+    border-radius: 17px;
+
+    box-shadow: var(--app-shadow);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    animation: atomDropdownIn 180ms ease both;
+}
+
+.chatWindow .dropDownItem {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    min-height: 42px;
+    padding: 10px 12px;
+
+    color: var(--app-text-secondary);
+
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease;
+}
+
+.chatWindow .dropDownItem i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    flex-shrink: 0;
+
+    font-size: 14px;
+}
+
+.chatWindow .dropDownItem:hover {
+    color: var(--app-text);
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(16, 185, 129, 0.12),
+            rgba(20, 184, 166, 0.07)
+        );
+
+    border-color: var(--app-border);
+}
+
+.chatWindow .dropDownItem[style*="color"] {
+    color: #fb7185 !important;
+}
+
+.chatWindow .dropDownItem[style*="color"]:hover {
+    background: rgba(244, 63, 94, 0.10);
+    border-color: rgba(244, 63, 94, 0.16);
+}
+
+@keyframes atomDropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.chatWindow > span {
+    flex-shrink: 0;
+}
+
+
+.chatWindow .chatInput {
+    position: relative;
+    z-index: 10;
+
+    width: 100%;
+    flex-shrink: 0;
+
+    padding: 14px 28px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            var(--app-bg) 35%
+        );
+
+    transition: background-color 260ms ease;
+}
+
+
+.chatWindow .inputBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    max-width: 900px;
+    min-height: 58px;
+
+    margin: 0 auto;
+    padding: 7px 8px 7px 20px;
+
+    background: var(--app-surface);
+    border: 1px solid var(--app-border-strong);
+    border-radius: 19px;
+
+    box-shadow:
+        var(--app-shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+
+    transition:
+        background 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.chatWindow .inputBox:focus-within {
+    border-color: rgba(16, 185, 129, 0.62);
+
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.09),
+        0 12px 38px rgba(16, 185, 129, 0.08);
+}
+
+.chatWindow .inputBox input {
+    display: block;
+
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+
+    padding: 0;
+
+    color: var(--app-text);
+    background: transparent;
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.chatWindow .inputBox input::placeholder {
+    color: var(--app-text-muted);
+    opacity: 0.9;
+}
+
+.chatWindow .inputBox input:focus,
+.chatWindow .inputBox input:focus-visible {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.chatWindow #submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #10b981 0%,
+        #14b8a6 55%,
+        #0f766e 100%
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 15px rgba(16, 185, 129, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        filter 180ms ease;
+}
+
+.chatWindow #submit:hover {
+    box-shadow:
+        0 7px 22px rgba(16, 185, 129, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+}
+
+.chatWindow #submit:active {
+    transform: scale(0.94);
+}
+
+.chatWindow #submit i {
+    font-size: 16px;
+}
+
+
+.chatWindow .info {
+    max-width: 900px;
+
+    margin: 10px auto 0;
+    padding: 0 8px;
+
+    color: var(--app-text-muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.app.light .chatWindow {
+    color: var(--app-text);
+
+    background:
+        radial-gradient(
+            ellipse at 82% 5%,
+            rgba(16, 185, 129, 0.18) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 15% 48%,
+            rgba(20, 184, 166, 0.13) 0%,
+            transparent 44%
+        ),
+        radial-gradient(
+            ellipse at 70% 100%,
+            rgba(16, 185, 129, 0.09) 0%,
+            transparent 45%
+        ),
+        var(--app-bg);
+}
+
+.app.light .chatWindow .navbar {
+    background: rgba(255, 255, 255, 0.42);
+    border-bottom-color: rgba(16, 185, 129, 0.18);
+
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+}
+
+.app.light .chatWindow .themeToggleBtn,
+.app.light .chatWindow .profileContainer {
+    color: var(--app-text);
+}
+
+.app.light .chatWindow .profileContainer {
+    background: linear-gradient(
+        120deg,
+        rgba(16, 185, 129, 0.12),
+        rgba(20, 184, 166, 0.08),
+        rgba(255, 255, 255, 0.35)
+    );
+
+    border-color: rgba(16, 185, 129, 0.20);
+}
+
+.app.light .chatWindow .dropDown {
+    background: rgba(250, 255, 252, 0.92);
+    border-color: var(--app-border-strong);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.app.light .chatWindow .chatInput {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(239, 250, 246, 0.45) 45%,
+        rgba(239, 250, 246, 0.82) 100%
+    );
+}
+
+.app.light .chatWindow .inputBox {
+    background: rgba(255, 255, 255, 0.48);
+    border-color: rgba(20, 184, 166, 0.30);
+
+    box-shadow:
+        0 10px 32px rgba(15, 118, 110, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+}
+
+.app.light .chatWindow .inputBox:focus-within {
+    background: rgba(255, 255, 255, 0.64);
+    border-color: rgba(16, 185, 129, 0.58);
+
+    box-shadow:
+        0 0 0 3px rgba(16, 185, 129, 0.08),
+        0 12px 38px rgba(16, 185, 129, 0.09);
+}
+
+
+@media (max-width: 1024px) {
+    .chatWindow .navbar {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .chatWindow .chatInput {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chatWindow .navbar {
+        min-height: 64px;
+        gap: 10px;
+
+        padding: 10px 14px;
+    }
+
+    .chatWindow .navbarBrand {
+        gap: 10px;
+    }
+
+    .chatWindow .mobileMenuBtn {
+        display: flex;
+    }
+
+    .chatWindow .brandName {
+        gap: 6px;
+        font-size: 18px;
+    }
+
+    .chatWindow .brandName .logoc {
+        width: 29px;
+        height: 29px;
+    }
+
+    .chatWindow .navControls {
+        gap: 8px;
+    }
+
+    .chatWindow .themeToggleBtn {
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+    }
+
+    .chatWindow .profileContainer {
+        min-height: 38px;
+        gap: 7px;
+        padding: 4px 8px 4px 4px;
+    }
+
+    .chatWindow .userIcon {
+        width: 29px;
+        height: 29px;
+        border-radius: 9px;
+    }
+
+    .chatWindow .userName {
+        max-width: 82px;
+        font-size: 12px;
+    }
+
+    .chatWindow .dropDown {
+        top: 58px;
+        right: 12px;
+        width: 210px;
+    }
+
+    .chatWindow .chatInput {
+        padding: 10px 12px 12px;
+    }
+
+    .chatWindow .inputBox {
+        min-height: 54px;
+        padding: 6px 7px 6px 14px;
+        border-radius: 17px;
+    }
+
+    .chatWindow .inputBox input {
+        font-size: 14px;
+    }
+
+    .chatWindow #submit {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+    }
+
+    .chatWindow .info {
+        margin-top: 8px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .chatWindow .navbar {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .chatWindow .brandName {
+        font-size: 16px;
+    }
+
+    .chatWindow .brandName .logoc {
+        width: 26px;
+        height: 26px;
+    }
+
+    .chatWindow .navControls {
+        gap: 6px;
+    }
+
+    .chatWindow .themeToggleBtn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .chatWindow .userName {
+        max-width: 65px;
+    }
+
+    .chatWindow .chatInput {
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+
+    .chatWindow .inputBox {
+        padding-left: 11px;
+    }
+}
+
+@media (max-width: 380px) {
+    .chatWindow .navbarBrand {
+        gap: 7px;
+    }
+
+    .chatWindow .brandName {
+        gap: 4px;
+        font-size: 15px;
+    }
+
+    .chatWindow .navControls {
+        gap: 5px;
+    }
+
+    .chatWindow .profileContainer {
+        gap: 5px;
+        padding-right: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chatWindow,
+    .chatWindow *,
+    .chatWindow *::before,
+    .chatWindow *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.app.light .navbarBrand .logoc,
+.app.light .navbarBrand .logoc img {
+    filter: brightness(0) saturate(100%);
+}
+
+.welcomeScreen {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(16, 185, 129, 0.55) transparent;
+}
+
+.welcomeScreen::-webkit-scrollbar {
+    width: 7px;
+}
+
+.welcomeScreen::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.welcomeScreen::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #10b981 0%,
+        #14b8a6 100%
+    );
+    border-radius: 20px;
+}
+
+.welcomeScreen::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #059669 0%,
+        #0f766e 100%
+    );
+}
+
+.app.light .chatWindow .navbar {
+    background: linear-gradient(
+        110deg,
+        rgba(16, 185, 129, 0.10),
+        rgba(20, 184, 166, 0.07),
+        rgba(255, 255, 255, 0.48)
+    );
+
+    border-bottom: 1px solid rgba(16, 185, 129, 0.20);
+
+    backdrop-filter: blur(28px) saturate(145%);
+    -webkit-backdrop-filter: blur(28px) saturate(145%);
+}
+
+.chatWindow > span {
+    align-self: center;
+    margin: 16px auto;
+    flex-shrink: 0;
+}
