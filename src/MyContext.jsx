@@ -98,7 +98,7 @@ export const MyContextProvider = ({ children }) => {
                     const freshToken = await firebaseUser.getIdToken();
 
                     const response = await fetch(
-                        "http://localhost:8080/api/auth/me",
+                        "https://atomai-backend.onrender.com/api/auth/me",
                         {
                             method: "GET",
                             headers: {
