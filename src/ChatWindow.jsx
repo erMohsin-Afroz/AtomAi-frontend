@@ -42,7 +42,7 @@ function ChatWindow({onMenuClick}) {
         };
 
         try {
-            const response = await fetch("http://localhost:8080/api/chat", options);
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/chat`, options);
             const res = await response.json();
             console.log(res);
             setReply(res.reply);
@@ -71,7 +71,7 @@ function ChatWindow({onMenuClick}) {
     const handleDeleteAccount = async () => {
         if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
             try {
-                const response = await fetch("http://localhost:8080/api/auth/delete-account", {
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/delete-account`, {
                     method: "DELETE",
                     headers: {
                         "Authorization": `Bearer ${token}`

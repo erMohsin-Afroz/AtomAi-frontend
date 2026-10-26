@@ -12,7 +12,7 @@ import { auth } from "./firebase.js";
 import { MyContext } from "./MyContext.jsx";
 import "./AuthModal.css";
 
-const API_URL = "http://localhost:8080";
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AuthModal = () => {
     const [isLogin, setIsLogin] = useState(true);
